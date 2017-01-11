@@ -1,0 +1,27 @@
+{
+  "name": "vue-audio",
+  "version": "0.0.1",
+  "description": "vue.js audio files loader and player",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/shershen08/vuejs-sound-player.git"
+  },
+  "keywords": [
+    "sound",
+    "mp3",
+    "wav",
+    "player",
+    "vue",
+    "vue.js"
+  ],
+  "author": "mikhail kuznetsov",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/shershen08/vuejs-sound-player/issues"
+  },
+  "homepage": "https://github.com/shershen08/vuejs-sound-player#readme"
+}
