@@ -1,38 +1,41 @@
 <template>
     <div class="vue-sound-wrapper">
-        <div class="vue-sound-buttons">
-            <div class="vue-sound__player">
-                <div class="btn-group btn-group-xs" role="group">
-                    <a @click="stop()" class="btn btn-default"><i class="icon-white glyphicon glyphicon-stop"></i></a>
-                    <a @click="play()" v-bind:class="playStyle"><i class="icon-white glyphicon glyphicon-play"></i></a>
-                    <a @click="pause()" v-bind:class="pauseStyle"><i class="icon-white glyphicon glyphicon-pause"></i></a>
-                    <a class="btn btn-default vue-sound__playback-time-wrapper">
-                        <div v-bind:style="progressStyle" class="vue-sound__playback-time-indicator"></div>
-                        <span v-if="loaded" class="vue-sound__playback-time-current">{{currentTime}}</span>
-                        <span class="vue-sound__playback-time-separator"></span>
-                        <span class="vue-sound__playback-time-total" v-if="loaded">{{duration}}</span>
-                    </a>
-                    <a @click="download()" class="btn btn-default"><i class="glyphicon glyphicon-floppy-disk"></i></a>
-                    <a @click="mute()" v-bind:class="mutedStyle"><i class="icon-white glyphicon glyphicon-equalizer"></i></a>
-                </div>
-
+        <div class="vue-sound__player">
+            <div class="btn-group btn-group-xs" role="group">
+                <a @click="stop()" title="Stop" class="btn btn-default"><i class="icon-white glyphicon glyphicon-stop"></i></a>
+                <a @click="play()" title="Play" v-bind:class="playStyle"><i class="icon-white glyphicon glyphicon-play"></i></a>
+                <a @click="pause()" title="Pause" v-bind:class="pauseStyle"><i class="icon-white glyphicon glyphicon-pause"></i></a>
+                <a class="btn btn-default vue-sound__playback-time-wrapper" title="Time played : Total time">
+                    <div v-bind:style="progressStyle" class="vue-sound__playback-time-indicator"></div>
+                    <span class="vue-sound__playback-time-current">{{currentTime}}</span>
+                    <span class="vue-sound__playback-time-separator"></span>
+                    <span class="vue-sound__playback-time-total">{{duration}}</span>
+                </a>
+                <a @click="download()" class="btn btn-default"><i class="glyphicon glyphicon-floppy-disk"></i></a>
+                <a @click="mute()" v-bind:class="mutedStyle" title="Mute"><i class="icon-white glyphicon glyphicon-equalizer"></i></a>
             </div>
-            <audio ref="audiofile" :src="file" preload="auto" style="display:none;"></audio>
-</div>
-</div>
+        </div>
+        <audio v-bind:id="playerId" ref="audiofile" :src="file" preload="auto" style="display:none;"></audio>
+    </div>
 </template>
 
 <script>
-    const buttonClass = 'btn btn-default';
-    let audio;
-    let duration;
-    const convertTimeHHMMSS = ( val ) => {
-        let hhmmss = new Date(val * 1000).toISOString().substr(11, 8);
-        return (hhmmss.indexOf('00:') == 0) ? hhmmss.substr(3) : hhmmss;
+    const defaultButtonClass = 'btn btn-default';
+    let audio, uuid;
+    
+    const generateUUID = () => {
+        return 'xxxxxxxx-xxxx-4xxx'.replace( /[xy]/g, function ( c ) {
+            var r = Math.random() * 16 | 0, v = c == 'x' ? r : ( r & 0x3 | 0x8 );
+            return v.toString( 16 );
+        });
     };
-    const toggleActive = (className) => {
-        return (className.indexOf('active') > -1) ? className.replace('active', '') : (className + ' active');
-    }
+    const convertTimeHHMMSS = ( val ) => {
+        let hhmmss = new Date( val * 1000 ).toISOString().substr( 11, 8 );
+        return ( hhmmss.indexOf( '00:' ) == 0 ) ? hhmmss.substr( 3 ) : hhmmss;
+    };
+    const toggleActive = ( className ) => {
+        return ( className.indexOf( 'active' ) > -1 ) ? className.replace( 'active', '' ) : ( className + ' active' );
+    };
     export default {
         name: "vue-audio",
         props: {
@@ -47,7 +50,10 @@
         },
         computed: {
             duration: function () {
-                return audio ? convertTimeHHMMSS( duration ) : '';
+                return this.audio ? convertTimeHHMMSS( this.totalDuration ) : '';
+            },
+            playerId: function () {
+                return 'player-' + this.uuid;
             }
         },
         data() {
@@ -56,73 +62,85 @@
                 loaded: false,
                 playing: false,
                 paused: false,
-                mutedStyle: buttonClass,
-                playStyle: buttonClass,
-                pauseStyle: buttonClass,
-                progressStyle : '',
-                currentTime: 0
+                mutedStyle: defaultButtonClass,
+                playStyle: defaultButtonClass,
+                pauseStyle: defaultButtonClass,
+                progressStyle: '',
+                currentTime: '00:00',
+                uuid:0,
+                audio:undefined,
+                totalDuration:0
             };
         },
         methods: {
             stop: function () {
-                audio.pause();
-                this.pauseStyle = this.playStyle = buttonClass;
+                this.pauseStyle = this.playStyle = defaultButtonClass;
                 this.paused = this.playing = false;
-                this.currentTime = 0;
+                this.audio.pause();
+                this.audio.currentTime = 0;
             },
             play: function () {
-                if(this.playing) return;
+                if ( this.playing ) return;
                 this.paused = false;
-                this.pauseStyle = buttonClass;
-                this.playStyle = toggleActive(this.playStyle);
-                audio.play();
+                this.pauseStyle = defaultButtonClass;
+                this.playStyle = toggleActive( this.playStyle );
+                this.audio.play();
             },
             pause: function () {
                 this.paused = !this.paused;
-                (this.paused) ? audio.pause() : audio.play()
-                this.pauseStyle = toggleActive(this.pauseStyle);
+                ( this.paused ) ? this.audio.pause() : this.audio.play()
+                this.pauseStyle = toggleActive( this.pauseStyle );
             },
             download: function () {
-                audio.pause();
+                this.audio.pause();
                 window.open( this.file, 'download' );
             },
             mute: function () {
                 this.isMuted = !this.isMuted;
-                audio.muted = this.isMuted;
-                this.mutedStyle = toggleActive(this.mutedStyle);
+                this.audio.muted = this.isMuted;
+                this.mutedStyle = toggleActive( this.mutedStyle );
             },
             _handleLoaded: function () {
-                if ( audio.readyState >= 2 ) {
-                    if ( this.autoPlay ) audio.play();
+                if ( this.audio.readyState >= 2 ) {
+                    if ( this.autoPlay ) this.audio.play();
                     this.loaded = true;
-                    duration = parseInt(audio.duration);
+                    this.totalDuration = parseInt( this.audio.duration );
                 } else {
                     throw new Error( 'Failed to load sound file' );
                 }
             },
             _handlePlayingUI: function ( e ) {
-                let currTime = parseInt( audio.currentTime );
-                let percentage = parseInt((currTime / duration)*100);
+                let currTime = parseInt( this.audio.currentTime );
+                let percentage = parseInt(( currTime / this.totalDuration ) * 100 );
                 this.progressStyle = `width:${percentage}%;`;
-                this.currentTime = convertTimeHHMMSS(currTime);
+                this.currentTime = convertTimeHHMMSS( currTime );
+            },
+            _handlePlayPause: function ( e ) {
+                if(e.type === 'pause' && this.paused === false && this.playing === false ){
+                    this.progressStyle = `width:0%;`;
+                    this.currentTime = '00:00';
+                }
             },
             init: function () {
-                audio.addEventListener( 'timeupdate', this._handlePlayingUI );
-                audio.addEventListener( 'loadeddata', this._handleLoaded );
+                this.audio.addEventListener( 'timeupdate', this._handlePlayingUI );
+                this.audio.addEventListener( 'loadeddata', this._handleLoaded );
+                this.audio.addEventListener( 'pause', this._handlePlayPause );
+                this.audio.addEventListener( 'play', this._handlePlayPause );
+            },
+            getAudio:function () {
+                return this.$el.querySelectorAll('audio')[0];
             }
         },
-        beforeMount: function () {
-            this.mutedStyle = buttonClass;
-                // playStyle: buttonClass,
-                // pauseStyle: buttonClass,
-        },
         mounted: function () {
-            audio = this.$refs.audiofile;
+            this.uuid = generateUUID();
+            this.audio = this.$el.querySelectorAll('audio')[0];
             this.init();
         },
         beforeDestroy: function () {
-            audio.removeEventListener( 'timeupdate', this._handlePlayingUI );
-            audio.removeEventListener( 'loadeddata', this._handleLoaded );
+            this.audio.removeEventListener( 'timeupdate', this._handlePlayingUI );
+            this.audio.removeEventListener( 'loadeddata', this._handleLoaded );
+            this.audio.removeEventListener( 'pause', this._handlePlayPause );
+            this.audio.removeEventListener( 'play', this._handlePlayPause );
         }
 
     };
