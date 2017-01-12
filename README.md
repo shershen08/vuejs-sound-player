@@ -1,4 +1,10 @@
-## Installation
+## Vue.js sound player
+
+### Demo
+
+See [DEMO](https://shershen08.github.io/vue-plugins-demo-static/index.html#/sound) here
+
+### Installation
 
 Run ```npm install vue-audio --save```
 
