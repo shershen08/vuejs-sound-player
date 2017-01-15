@@ -12,7 +12,7 @@ Run ```npm install vue-audio --save```
 
 Add in the component ```import VueAudio from 'vue-audio';```
 
-Use in the template ```<vue-audio file="myLocalFile"></lorem>```
+Use in the template ```<vue-audio file="myLocalFile"></vue-audio>```
 
 The component has two attributes
 
