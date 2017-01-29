@@ -12,14 +12,17 @@
                     <span class="vue-sound__playback-time-total">{{duration}}</span>
                 </a>
                 <a @click="download()" class="btn btn-default"><i class="glyphicon glyphicon-floppy-disk"></i></a>
-                <a @click="mute()" v-bind:class="mutedStyle" title="Mute"><i class="icon-white glyphicon glyphicon-equalizer"></i></a>
+                <a @click="mute()" v-bind:class="mutedStyle" title="Mute"><i class="icon-white glyphicon glyphicon-volume-off"></i></a>
+                <a v-on:mouseover="toggleVolume()" class="btn btn-default" title="Volume"><i class="icon-white glyphicon glyphicon-equalizer"></i></a>
             </div>
+            <input orient="vertical" v-model.lazy="volumeValue" v-on:change="updateVolume()" v-show="hideVolumeSlider" type="range" min="0" max="100" class="volume-slider"/>
         </div>
         <audio v-bind:id="playerId" ref="audiofile" :src="file" preload="auto" style="display:none;"></audio>
     </div>
 </template>
 
 <script>
+    const baseVolumeValue = 7.5;
     const defaultButtonClass = 'btn btn-default';
     let audio, uuid;
     
@@ -69,10 +72,23 @@
                 currentTime: '00:00',
                 uuid:0,
                 audio:undefined,
-                totalDuration:0
+                totalDuration:0,
+                hideVolumeSlider: false,
+                volumeValue: baseVolumeValue
             };
         },
         methods: {
+            updateVolume : function name() {
+                this.hideVolumeSlider = false;
+                this.audio.volume = this.volumeValue/100;
+                if(this.volumeValue/100 > 0){
+                    this.isMuted = this.audio.muted = false;
+                    this.mutedStyle = defaultButtonClass;
+                }
+            },
+            toggleVolume: function () {
+                this.hideVolumeSlider = true;
+            },
             stop: function () {
                 this.pauseStyle = this.playStyle = defaultButtonClass;
                 this.paused = this.playing = false;
@@ -99,6 +115,7 @@
                 this.isMuted = !this.isMuted;
                 this.audio.muted = this.isMuted;
                 this.mutedStyle = toggleActive( this.mutedStyle );
+                this.volumeValue = this.isMuted ? 0 : 75;
             },
             _handleLoaded: function () {
                 if ( this.audio.readyState >= 2 ) {
@@ -146,7 +163,7 @@
     };
 </script>
 
-<style lang="sass">
+<style lang="sass" scoped>
     .vue-sound-wrapper {
 
     }
@@ -167,6 +184,13 @@
     }
     .vue-sound__playback-time-total {
 
+    }
+    .volume-slider {
+        -webkit-appearance: slider-vertical;
+        position: relative;
+        height: 100px;
+        top: -60px;
+        left: 50px;
     }
     .vue-sound__playback-time-indicator {
         background: #aaa;
