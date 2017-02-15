@@ -24,8 +24,7 @@ The component has two attributes
 
 ### ToDo
 
- - Add meta display
- - Add track position navigation
+ - <s>Add track position navigation</s>
  - Add remote file load service
 
 ### License

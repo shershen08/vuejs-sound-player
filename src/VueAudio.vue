@@ -5,7 +5,7 @@
                 <a @click="stop()" title="Stop" class="btn btn-default"><i class="icon-white glyphicon glyphicon-stop"></i></a>
                 <a @click="play()" title="Play" v-bind:class="playStyle"><i class="icon-white glyphicon glyphicon-play"></i></a>
                 <a @click="pause()" title="Pause" v-bind:class="pauseStyle"><i class="icon-white glyphicon glyphicon-pause"></i></a>
-                <a class="btn btn-default vue-sound__playback-time-wrapper" title="Time played : Total time">
+                <a v-on:click="setPosition" class="btn btn-default vue-sound__playback-time-wrapper" title="Time played : Total time">
                     <div v-bind:style="progressStyle" class="vue-sound__playback-time-indicator"></div>
                     <span class="vue-sound__playback-time-current">{{currentTime}}</span>
                     <span class="vue-sound__playback-time-separator"></span>
@@ -78,6 +78,16 @@
             };
         },
         methods: {
+             setPosition: function name(e) {
+                let tag = e.target;
+                if ( !this.playing ) return;
+                if(e.target.tagName === "SPAN"){
+                    tag = e.target.parentElement;
+                }
+                const pos = tag.getBoundingClientRect();
+                const seekPos = (e.clientX - pos.left)/pos.width;
+                this.audio.currentTime = parseInt(this.audio.duration * seekPos);
+            },
             updateVolume : function name() {
                 this.hideVolumeSlider = false;
                 this.audio.volume = this.volumeValue/100;
@@ -101,6 +111,7 @@
                 this.pauseStyle = defaultButtonClass;
                 this.playStyle = toggleActive( this.playStyle );
                 this.audio.play();
+                this.playing = true;
             },
             pause: function () {
                 this.paused = !this.paused;
