@@ -1,6 +1,6 @@
 {
   "name": "vue-audio",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "description": "vue.js audio files player",
   "main": "index.js",
   "scripts": {
