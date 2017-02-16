@@ -1,0 +1,25 @@
+{
+  "name": "vue-audio",
+  "description": "vue.js audio files player",
+  "main": "index.js",
+  "authors": [
+    "mikhail kuznetsov"
+  ],
+  "license": "MIT",
+  "keywords": [
+    "sound",
+    "mp3",
+    "wav",
+    "player",
+    "vue",
+    "vue.js"
+  ],
+  "homepage": "https://github.com/shershen08/vuejs-sound-player",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
