@@ -6,7 +6,9 @@ See [DEMO](https://shershen08.github.io/vue-plugins-demo-static/index.html#/soun
 
 ### Installation
 
-Run ```npm install vue-audio --save```
+Use npm: ```npm install vue-audio --save```
+
+Or bower: ```bower install vue-audio```
 
 ### Usage
 
