@@ -1,10 +1,12 @@
 {
   "name": "vue-audio",
-  "version": "0.0.6",
+  "version": "0.0.7",
   "description": "vue.js audio files player",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "watch-http-server -s -p 8888",
+    "lint": "eslint --ext .js,.vue src"
   },
   "repository": {
     "type": "git",
@@ -23,5 +25,16 @@
   "bugs": {
     "url": "https://github.com/shershen08/vuejs-sound-player/issues"
   },
-  "homepage": "https://github.com/shershen08/vuejs-sound-player#readme"
+  "homepage": "https://github.com/shershen08/vuejs-sound-player#readme",
+    "devDependencies": {
+    "watch-http-server": "^0.7.6",
+    "babel-eslint": "^7.1.1",
+    "eslint": "^3.14.1",
+    "eslint-friendly-formatter": "^2.0.7",
+    "eslint-loader": "^1.6.1",
+    "eslint-plugin-html": "^2.0.0",
+    "eslint-config-standard": "^6.2.1",
+    "eslint-plugin-promise": "^3.4.0",
+    "eslint-plugin-standard": "^2.0.1"
+  }
 }
