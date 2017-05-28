@@ -27,10 +27,15 @@ The component has two attributes
  
  
  For styling the Bootstrap classes v 3.7 are used, so you may want to add [bootstrap css](https://www.npmjs.com/package/bootstrap-css) package or add via stylesheet link ```<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css">```
+ 
+### Questions, bugs
+
+Create [an issue](https://github.com/shershen08/vuejs-sound-player/issues) or try to ping me on twitter [@legkoletat](https://twitter.com/legkoletat)
 
 ### ToDo
 
  - <s>Add track position navigation</s>
+ - Replace CSS classes that make bootstrap necessary
  - Add remote file load service
 
 ### License
