@@ -23,7 +23,7 @@
 
 <script src="./vueaudio.plugin.js"></script>
 
-<style lang="sass" scoped>
+<style lang="scss" scoped>
     .vue-sound-wrapper {
 
     }
