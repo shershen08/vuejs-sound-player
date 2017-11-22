@@ -23,44 +23,31 @@
 
 <script src="./vueaudio.plugin.js"></script>
 
-<style lang="sass" scoped>
+<style lang="scss" scoped>
     .vue-sound-wrapper {
+        .vue-sound__playback-time-separator::after {
+            content:' : ';
+        }
+        .vue-sound__playback-time-total {
 
-    }
-    .vue-sound__player {
-
-    }
-    .vue-sound__navigator {
-
-    }
-    .vue-sound__playback-time {
-
-    }
-    .vue-sound__playback-time-separator {
-
-    }
-    .vue-sound__playback-time-separator::after {
-        content:' : ';
-    }
-    .vue-sound__playback-time-total {
-
-    }
-    .volume-slider {
-        -webkit-appearance: slider-vertical;
-        position: relative;
-        height: 100px;
-        top: -60px;
-        left: 50px;
-    }
-    .vue-sound__playback-time-indicator {
-        background: #aaa;
-        height: 22px;
-        position: absolute;
-        z-index: -1;
-        top:-1px;
-        left: 0px;
-    }
-    .vue-sound__player .vue-sound__playback-time-wrapper {
-        background: transparent;
+        }
+        .volume-slider {
+            -webkit-appearance: slider-vertical;
+            position: relative;
+            height: 100px;
+            top: -60px;
+            left: 50px;
+        }
+        .vue-sound__playback-time-indicator {
+            background: #aaa;
+            height: 22px;
+            position: absolute;
+            z-index: -1;
+            top:-1px;
+            left: 0px;
+        }
+        .vue-sound__player .vue-sound__playback-time-wrapper {
+            background: transparent;
+        }
     }
 </style>
