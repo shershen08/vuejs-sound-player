@@ -1,4 +1,4 @@
-import Vue from 'vue/dist/vue.esm'
+import Vue from 'vue'
 import VueAudio from './VueAudio.vue'
 
 const Audio = new Vue({
