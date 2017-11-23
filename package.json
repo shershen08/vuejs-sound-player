@@ -26,15 +26,29 @@
     "url": "https://github.com/shershen08/vuejs-sound-player/issues"
   },
   "homepage": "https://github.com/shershen08/vuejs-sound-player#readme",
-    "devDependencies": {
-    "watch-http-server": "^0.7.6",
+  "devDependencies": {
     "babel-eslint": "^7.1.1",
+    "css-loader": "^0.28.7",
     "eslint": "^3.14.1",
+    "eslint-config-standard": "^6.2.1",
     "eslint-friendly-formatter": "^2.0.7",
     "eslint-loader": "^1.6.1",
     "eslint-plugin-html": "^2.0.0",
-    "eslint-config-standard": "^6.2.1",
     "eslint-plugin-promise": "^3.4.0",
-    "eslint-plugin-standard": "^2.0.1"
+    "eslint-plugin-standard": "^2.0.1",
+    "node-sass": "^4.7.2",
+    "sass-loader": "^6.0.6",
+    "vue-loader": "^13.5.0",
+    "vue-template-compiler": "^2.5.8",
+    "watch-http-server": "^0.7.6",
+    "webpack": "^3.8.1",
+    "webpack-dev-server": "^2.9.4"
+  },
+  "dependencies": {
+    "vue": "^2.5.8"
+  },
+  "scripts": {
+    "dev": "./node_modules/webpack-dev-server/bin/webpack-dev-server.js",
+    "open": "./node_modules/webpack-dev-server/bin/webpack-dev-server.js --open"
   }
 }
