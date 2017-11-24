@@ -4,9 +4,8 @@
   "description": "vue.js audio files player",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "watch-http-server -s -p 8888",
-    "lint": "eslint --ext .js,.vue src"
+    "dev": "./node_modules/webpack-dev-server/bin/webpack-dev-server.js",
+    "open": "./node_modules/webpack-dev-server/bin/webpack-dev-server.js --open"
   },
   "repository": {
     "type": "git",
@@ -36,8 +35,10 @@
     "eslint-plugin-html": "^2.0.0",
     "eslint-plugin-promise": "^3.4.0",
     "eslint-plugin-standard": "^2.0.1",
+    "file-loader": "^1.1.5",
     "node-sass": "^4.7.2",
     "sass-loader": "^6.0.6",
+    "style-loader": "^0.19.0",
     "vue-loader": "^13.5.0",
     "vue-template-compiler": "^2.5.8",
     "watch-http-server": "^0.7.6",
@@ -46,9 +47,5 @@
   },
   "dependencies": {
     "vue": "^2.5.8"
-  },
-  "scripts": {
-    "dev": "./node_modules/webpack-dev-server/bin/webpack-dev-server.js",
-    "open": "./node_modules/webpack-dev-server/bin/webpack-dev-server.js --open"
   }
 }

@@ -6,7 +6,8 @@ module.exports = {
   devServer: {
     contentBase: './dist',
     publicPath: '/',
-    hot: true
+    hot: true,
+    watchContentBase: true
   },
   devtool: 'inline-source-map',
   output: {
@@ -33,6 +34,17 @@ module.exports = {
             sass: 'vue-style-loader!css-loader!sass-loader?indentedSyntax' // <style lang="sass">
           }
         }
+      },
+      {
+        test: /\.css$/,
+        use: [
+          { loader: 'style-loader' },
+          { loader: 'css-loader' }
+        ]
+      },
+      {
+        test: /\.(ttf|eot|svg|woff(2)?)(\?[a-z0-9=&.]+)?$/,
+        loader: 'file-loader'
       }
     ]
   }
