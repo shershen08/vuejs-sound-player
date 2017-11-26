@@ -24,10 +24,10 @@ The component has two attributes
 
  - **file** (String) is required;
  - **autoPlay** (Boolean) is false by default;
- 
- 
+
+
  For styling the Bootstrap classes v 3.7 are used, so you may want to add [bootstrap css](https://www.npmjs.com/package/bootstrap-css) package or add via stylesheet link ```<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css">```
- 
+
 ### Questions, bugs
 
 Create [an issue](https://github.com/shershen08/vuejs-sound-player/issues) or try to ping me on twitter [@legkoletat](https://twitter.com/legkoletat)
@@ -37,6 +37,28 @@ Create [an issue](https://github.com/shershen08/vuejs-sound-player/issues) or tr
  - <s>Add track position navigation</s>
  - Replace CSS classes that make bootstrap necessary
  - Add remote file load service
+
+### Contribute
+
+### 1. install dependencies
+
+```
+yarn install
+```
+
+### 2. run the dev server
+
+```
+yarn dev
+```
+
+and then access the url which the project is running at(example: http://localhost:8081/) . Otherwise, you can simplify run this command.
+
+```
+yarn open
+```
+
+It will open the website after building.
 
 ### License
 
