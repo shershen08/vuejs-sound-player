@@ -49,7 +49,7 @@ export default {
       paused: true,
       progressStyle: '',
       currentTime: '00:00',
-      uuid: 0,
+      uuid: '0',
       audio: undefined,
       totalDuration: 0,
       hideVolumeSlider: false,
@@ -141,7 +141,7 @@ export default {
   },
   mounted: function () {
     this.uuid = generateUUID()
-    this.audio = this.$el.querySelectorAll('audio')[0]
+    this.audio = this.getAudio()
     this.init()
   },
   beforeDestroy: function () {
