@@ -1,23 +1,21 @@
-const baseVolumeValue = 7.5
+export const baseVolumeValue = 7.5
 let audio, uuid
 
-const prefixCls = 'vue-sound'
+export const prefixCls = 'vue-sound'
 
-const generateUUID = () => {
-    /* eslint-disable */
+export const generateUUID = () => {
   return 'xxxxxxxx-xxxx-4xxx'.replace(/[xy]/g, function (c) {
-    var v, r = Math.random() * 16 | 0; v = c === 'x' ? r : (r & 0x3 | 0x8)
+    let v, r
+    r = Math.random() * 16 | 0; v = c === 'x' ? r : (r & 0x3 | 0x8)
     return v.toString(16)
   })
-   /* eslint-enable */
 }
-const convertTimeHHMMSS = (val) => {
+
+export const convertTimeHHMMSS = (val) => {
   let hhmmss = new Date(val * 1000).toISOString().substr(11, 8)
   return (hhmmss.indexOf('00:') === 0) ? hhmmss.substr(3) : hhmmss
 }
-const toggleActive = (className) => {
-  return (className.indexOf('active') > -1) ? className.replace('active', '') : (className + ' active')
-}
+
 export default {
   name: 'vue-audio',
   props: {
