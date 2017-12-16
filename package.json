@@ -3,6 +3,9 @@
   "version": "0.0.9",
   "description": "vue.js audio files player",
   "main": "index.js",
+  "engines": {
+    "node": "8.0.0"
+  },
   "scripts": {
     "dev": "./node_modules/webpack-dev-server/bin/webpack-dev-server.js",
     "open": "./node_modules/webpack-dev-server/bin/webpack-dev-server.js --open",
