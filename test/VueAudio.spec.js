@@ -21,7 +21,39 @@ describe('Tool', () => {
 })
 
 describe('VueAudio', () => {
+  describe('props attribute', () => {
+    let vm, fileUrl = "http://ozo3wlmi6.bkt.clouddn.com/first.mp3"
 
+    beforeEach(() => {
+      vm = new Vue(VueAudio)
+      vm.file = fileUrl
+    })
+
+    it('File prop', () => {
+      vm.$mount()
+
+      const audio = vm.$refs['audiofile']
+      expect(audio.src).to.equal(fileUrl)
+    })
+
+    it('Auto play prop', () => {
+      vm.$mount()
+      let audio = vm.$refs['audiofile']
+      expect(vm.paused).to.equal(true)
+    })
+
+    it('Loop prop', (done) => {
+      vm.$mount()
+      let audio = vm.$refs['audiofile']
+
+      // test change loop
+      vm.changeLoop()
+      Vue.nextTick(() => {
+        expect(audio.loop).to.equal(true)
+        done()
+      })
+    })
+  });
 
   describe('computed attribute', () => {
     let vm

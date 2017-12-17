@@ -26,6 +26,10 @@ export default {
     autoPlay: {
       type: Boolean,
       default: false
+    },
+    loop: {
+      type: Boolean,
+      default: false
     }
   },
   computed: {
@@ -48,6 +52,7 @@ export default {
       progressStyle: '',
       currentTime: '00:00',
       uuid: '0',
+      innerLoop: undefined,
       audio: undefined,
       totalDuration: 0,
       hideVolumeSlider: false,
@@ -96,6 +101,9 @@ export default {
       this.paused = !this.paused;
       (this.paused) ? this.audio.pause() : this.audio.play()
     },
+    changeLoop: function () {
+      this.innerLoop = !this.innerLoop
+    },
     download: function () {
       this.stop()
       window.open(this.file, 'download')
@@ -107,7 +115,8 @@ export default {
     },
     _handleLoaded: function () {
       if (this.audio.readyState >= 2) {
-        if (this.autoPlay) this.audio.play()
+        if (this.autoPlay) this.play()
+
         this.loaded = true
         this.totalDuration = parseInt(this.audio.duration)
       } else {
@@ -140,6 +149,7 @@ export default {
   mounted: function () {
     this.uuid = generateUUID()
     this.audio = this.getAudio()
+    this.innerLoop = this.loop
     this.init()
   },
   beforeDestroy: function () {
