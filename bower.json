@@ -1,7 +1,7 @@
 {
   "name": "vue-audio",
   "description": "vue.js audio files player",
-  "version": "0.0.9",
+  "version": "0.0.10",
   "main": "index.js",
   "authors": [
     "mikhail kuznetsov"
