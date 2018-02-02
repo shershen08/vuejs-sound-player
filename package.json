@@ -4,7 +4,7 @@
   "description": "vue.js audio files player",
   "main": "index.js",
   "engines": {
-    "node": "8.0.0"
+  "node": "^9.4.0 || ^8.9.4"
   },
   "scripts": {
     "dev": "./node_modules/webpack-dev-server/bin/webpack-dev-server.js",
@@ -63,8 +63,8 @@
     "webpack-dev-server": "^2.9.4",
     "karma-spec-reporter": "^0.0.31"
   },
+  "contributors" : ["lanzhiheng"],
   "dependencies": {
-   
     "vue": "^2.5.8"
   }
 }
