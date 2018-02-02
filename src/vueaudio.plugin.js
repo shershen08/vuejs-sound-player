@@ -92,7 +92,7 @@ export default {
       this.audio.currentTime = 0
     },
     play: function () {
-      if (this.playing) return
+      if (this.playing && !this.paused) return
       this.paused = false
       this.audio.play()
       this.playing = true
