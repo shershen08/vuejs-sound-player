@@ -1,10 +1,10 @@
 {
   "name": "vue-audio",
-  "version": "0.0.11",
+  "version": "0.0.12",
   "description": "vue.js audio files player",
   "main": "index.js",
   "engines": {
-  "node": ">= 8.9.4"
+    "node": ">= 8.9.4"
   },
   "scripts": {
     "dev": "./node_modules/webpack-dev-server/bin/webpack-dev-server.js",
@@ -63,7 +63,9 @@
     "webpack-dev-server": "^2.9.4",
     "karma-spec-reporter": "^0.0.31"
   },
-  "contributors" : ["lanzhiheng"],
+  "contributors": [
+    "lanzhiheng"
+  ],
   "dependencies": {
     "vue": "^2.5.8"
   }
