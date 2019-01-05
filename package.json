@@ -60,7 +60,7 @@
     "vue-template-compiler": "^2.5.8",
     "watch-http-server": "^0.7.6",
     "webpack": "^3.8.1",
-    "webpack-dev-server": "^2.9.4",
+    "webpack-dev-server": ">=3.1.11",
     "karma-spec-reporter": "^0.0.31"
   },
   "contributors" : ["lanzhiheng"],
