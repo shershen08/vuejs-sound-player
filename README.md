@@ -2,7 +2,7 @@
 
 Vue.js sound audio player UI. Covers audio-tag API and adds more.
 
-![dependencies status](https://david-dm.org/shershen08/vuejs-sound-player/status.svg)
+![dependencies status](https://david-dm.org/shershen08/vuejs-sound-player/status.svg) [![](https://data.jsdelivr.com/v1/package/npm/vue-audio/badge)](https://www.jsdelivr.com/package/npm/vue-audio)
 
 ### Demo
 
