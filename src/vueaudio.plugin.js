@@ -130,7 +130,7 @@ export default {
       this.currentTime = convertTimeHHMMSS(currTime)
     },
     _handlePlayPause: function (e) {
-      if (e.type === 'pause' && this.playing === false) {
+      if (e.type === 'pause' && this.paused === false && this.playing === false) {
         this.progressStyle = `width:0%;`
         this.currentTime = '00:00'
         this.paused = true
